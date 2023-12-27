@@ -24,7 +24,7 @@ void print(Node* Node)
 {
     while(Node != NULL)
     {
-        cout << Node->data << "->";
+        cout << Node->data << "->xxxxxxxxxxx";
         Node = Node->next;
     }
 }
