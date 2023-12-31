@@ -53,7 +53,7 @@ void print(Node* Node)
 {
     while(Node != NULL)
     {
-        cout << Node->data << "->,";
+        cout << Node->data << "->";
         Node = Node->next;
     }
 }
