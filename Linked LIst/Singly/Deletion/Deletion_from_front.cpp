@@ -17,11 +17,9 @@ void push(Node** head, int new_data)
 
 void del(Node** head)
 {
-    Node* temp = *head;
     Node* curr = *head;
     curr = curr->next;
     *head = curr;
-    free(temp);
 }
 
 void print(Node* node)

@@ -4,37 +4,28 @@ using namespace std;
 struct Node
 {
     int data;
-    Node* next;
+    Node *next;
 };
 
 void push(Node **head, int new_data)
 {
-    Node* new_node = new Node();
+    Node *new_node = new Node();
     new_node->data = new_data;
     new_node->next = *head;
     *head = new_node;
 }
 
-void deleteKey(Node** head, int key)
+void delte(Node **head)
 {
-    Node* curr = *head;
-    Node* prev = NULL;
+    Node *curr = *head;
+    Node *prev = NULL;
 
-    if(curr != NULL && curr->data == key)
+    while (curr->next->next != NULL)
     {
-        *head = curr->next;
-        delete(curr);
-        return;
-    }
-
-    while(curr != NULL && curr->data != key)
-    {
-        prev = curr;
         curr = curr->next;
     }
 
-    prev->next = curr->next;
-    delete(curr);
+    curr->next = NULL;
 }
 
 void print(Node *head)
@@ -62,6 +53,6 @@ int main()
 
     cout << "\n";
 
-    deleteKey(&head, 6);
+    delte(&head);
     print(head);
 }
