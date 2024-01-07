@@ -4,18 +4,18 @@ using namespace std;
 struct Node
 {
     int data;
-    Node* prev;
-    Node* next;
+    Node *prev;
+    Node *next;
 };
 
-void push(Node** head, int new_data)
+void push(Node **head, int new_data)
 {
     Node *new_node = new Node();
     new_node->data = new_data;
     new_node->prev = NULL;
     new_node->next = *head;
 
-    if(*head != NULL)
+    if (*head != NULL)
     {
         (*head)->prev = new_node;
     }
@@ -25,11 +25,11 @@ void push(Node** head, int new_data)
 
 void InsertAtEnd(Node **head, int new_data)
 {
-    Node* new_node = new Node();
+    Node *new_node = new Node();
     new_node->data = new_data;
     new_node->next = NULL;
 
-    if(*head == NULL)
+    if (*head == NULL)
     {
         new_node->prev = NULL;
         *head = new_node;
@@ -38,7 +38,7 @@ void InsertAtEnd(Node **head, int new_data)
 
     Node *last = *head;
 
-    while(last->next != NULL)
+    while (last->next != NULL)
     {
         last = last->next;
     }
@@ -47,9 +47,9 @@ void InsertAtEnd(Node **head, int new_data)
     new_node->prev = last;
 }
 
-void print(Node* head)
+void print(Node *head)
 {
-    while(head != NULL)
+    while (head != NULL)
     {
         cout << head->data << "->";
         head = head->next;
@@ -58,12 +58,12 @@ void print(Node* head)
 
 int main()
 {
-    int arr[] = {1,2,3,4,5,6,7};
-    int n = sizeof(arr)/sizeof(arr[0]);
+    int arr[] = {1, 2, 3, 4, 5, 6, 7};
+    int n = sizeof(arr) / sizeof(arr[0]);
 
     Node *head = NULL;
 
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         push(&head, arr[i]);
     }
