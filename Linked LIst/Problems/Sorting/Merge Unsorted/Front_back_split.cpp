@@ -4,10 +4,10 @@ using namespace std;
 struct Node
 {
     int data;
-    Node* next;
+    Node *next;
 };
 
-void push(Node** head, int val)
+void push(Node **head, int val)
 {
     Node *new_node = new Node();
     new_node->data = val;
@@ -15,15 +15,15 @@ void push(Node** head, int val)
     *head = new_node;
 }
 
-void front_back_split(Node *source, Node** frontref, Node** backref)
+void front_back_split(Node *source, Node **frontref, Node **backref)
 {
-    Node* slow = source;
-    Node* fast = source->next;
+    Node *slow = source;
+    Node *fast = source->next;
 
-    while(fast != NULL)
+    while (fast != NULL)
     {
         fast = fast->next;
-        if(fast != NULL)
+        if (fast != NULL)
         {
             slow = slow->next;
             fast = fast->next;
@@ -35,21 +35,22 @@ void front_back_split(Node *source, Node** frontref, Node** backref)
     slow->next = NULL;
 }
 
-Node* SortedMerge(Node* a, Node* b)
+Node *SortedMerge(Node *a, Node *b)
 {
-    Node* result = NULL;
+    Node *result = NULL;
 
-    if(a == NULL)
+    if (a == NULL)
         return b;
-    else if(b==NULL)
+    else if (b == NULL)
         return a;
 
-    if(a->data <= b->data)
+    if (a->data <= b->data)
     {
         result = a;
         result->next = SortedMerge(a->next, b);
     }
-    else {
+    else
+    {
         result = b;
         result->next = SortedMerge(a, b->next);
     }
@@ -59,11 +60,11 @@ Node* SortedMerge(Node* a, Node* b)
 
 void MergeSort(Node **headref)
 {
-    Node* head = *headref;
-    Node* a;
-    Node* b;
+    Node *head = *headref;
+    Node *a;
+    Node *b;
 
-    if(head == NULL || head->next == NULL)
+    if (head == NULL || head->next == NULL)
         return;
 
     front_back_split(head, &a, &b);
@@ -74,9 +75,9 @@ void MergeSort(Node **headref)
     *headref = SortedMerge(a, b);
 }
 
-void print(Node* head)
+void print(Node *head)
 {
-    while(head != NULL)
+    while (head != NULL)
     {
         cout << head->data << "->";
         head = head->next;
@@ -86,12 +87,12 @@ void print(Node* head)
 
 int main()
 {
-    int arr[] = {66,4,2,88,1,22,37,91,23,2};
-    int n = sizeof(arr)/sizeof(arr[0]);
+    int arr[] = {66, 4, 2, 88, 1, 22, 37, 91, 23, 2};
+    int n = sizeof(arr) / sizeof(arr[0]);
 
-    Node* head = NULL;
+    Node *head = NULL;
 
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         push(&head, arr[i]);
     }
