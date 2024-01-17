@@ -83,4 +83,6 @@ int main()
     }
 
     MergeLinkedList(head, head2);
+
+    return 0;
 }
