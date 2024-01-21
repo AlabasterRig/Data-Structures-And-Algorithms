@@ -7,39 +7,50 @@ struct Node
     Node* next;
 };
 
-void push(Node **head, int new_data)
+void push(Node** head, int val)
 {
     Node* new_node = new Node();
-    new_node->data = new_data;
+    new_node->data = val;
     new_node->next = *head;
     *head = new_node;
 }
 
-void deleteKey(Node** head, int key)
+void swap(Node** a, Node** b)
 {
-    Node* curr = *head;
-    Node* prev = NULL;
-
-    if(curr != NULL && curr->data == key)
-    {
-        *head = curr->next;
-        delete(curr);
-        return;
-    }
-
-    while(curr != NULL && curr->data != key)
-    {
-        prev = curr;
-        curr = curr->next;
-    }
-
-    prev->next = curr->next;
-    delete(curr);
+    Node *temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
-void print(Node *head)
+void SwapNode(Node** head, int x, int y)
 {
-    while (head != NULL)
+    Node** first = NULL;
+    Node** second = NULL;
+
+    while(*head)
+    {
+        if((*head)->data == x)
+        {
+            first = head;
+        }
+        else if((*head)->data == y)
+        {
+            second = head;
+        }
+
+        head = &((*head)->next);
+    }
+
+    if(first && second)
+    {
+        swap(*&first, *&second);
+        swap(&(*first)->next, &(*second)->next);
+    }
+}
+
+void print(Node* head)
+{
+    while(head != NULL)
     {
         cout << head->data << "->";
         head = head->next;
@@ -48,20 +59,21 @@ void print(Node *head)
 
 int main()
 {
-    int arr[] = {1, 2, 3, 4, 5, 6, 7};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    int arr[] = {1,2,3,4,5,6,7,8};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int x = 2;
+    int y = 7;
 
-    Node *head = NULL;
+    Node* head = NULL;
 
-    for (int i = 0; i < n; i++)
+    for(int i = 0; i < n; i++)
     {
         push(&head, arr[i]);
     }
 
     print(head);
 
+    SwapNode(&head, x, y);
     cout << "\n";
-
-    deleteKey(&head, 6);
     print(head);
 }
