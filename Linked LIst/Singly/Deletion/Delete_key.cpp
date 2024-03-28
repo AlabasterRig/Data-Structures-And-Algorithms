@@ -15,26 +15,38 @@ void push(Node **head, int new_data)
     *head = new_node;
 }
 
-void deleteKey(Node** head, int key)
+Node* deleteKey(Node** head, int key)
 {
     Node* curr = *head;
     Node* prev = NULL;
 
-    if(curr != NULL && curr->data == key)
+    if(curr == NULL)
+    {
+        return curr;
+    }
+
+    while(curr != NULL && curr->data == key)
     {
         *head = curr->next;
-        delete(curr);
-        return;
+        delete curr;
+        curr = *head;
     }
 
-    while(curr != NULL && curr->data != key)
+    while(curr!= NULL)
     {
-        prev = curr;
-        curr = curr->next;
+        if(curr->data == key)
+        {
+            prev->next = curr->next;
+            delete curr;
+            curr = prev->next;
+        }
+        else{
+            prev = curr;
+            curr = curr->next;
+        }
     }
-
-    prev->next = curr->next;
-    delete(curr);
+    
+    return *head;
 }
 
 void print(Node *head)
@@ -48,7 +60,7 @@ void print(Node *head)
 
 int main()
 {
-    int arr[] = {1, 2, 3, 4, 5, 6, 7};
+    int arr[] = {6, 2, 3, 4, 5, 6, 7};
     int n = sizeof(arr) / sizeof(arr[0]);
 
     Node *head = NULL;
