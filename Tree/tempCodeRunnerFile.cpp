@@ -1,0 +1,4 @@
+if (Root == NULL)
+    // {
+    //     return;
+    // }
